@@ -2,3 +2,88 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+/* Step 1: Style the showing state of the nav before hiding it.
+start with the mobile view */
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header {
+    padding: 2%;
+    background-color: #fff;
+}
+
+header a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+}
+
+header a:hover,
+header a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+header li {
+    line-height: 40px;
+    text-align: center;
+}
+
+header button {
+    border: none;
+    background-color: #fff;
+    outline: none;
+}
+
+header button:hover {
+    cursor: pointer;
+}
+
+header svg rect {
+    fill: #3f3f3f;
+}
+
+/* Step 2: Hide the nav for the default loading screen */
+/* Display: none; will not take away the transitions. Hide 
+by removing the height of the element */
+
+header nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+/* step 3: Create a special class that will show the nav
+this class name will only exit in the CSS, not the markup
+javascrpit will do that for us, We'll add that functionality in the main.js file*/
+
+.show-nav {
+    max-height: 15rem;
+}
+
+/* add a media query and show the nav by default (hide the button
+and style the nav horizontally) */
+@media only screen and (min-width: 40rem) {
+    .hamburger-btn {
+        display: none;
+    }
+    /* we want to see the nav, so give it its height back*/
+    header nav {
+        max-height: 5rem;
+        overflow: visible;
+    }
+    /* change the layout of the nav items */
+    .menu,
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
